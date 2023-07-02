@@ -15,22 +15,7 @@ public class Collectable : MonoBehaviour
     [SerializeField] private ItemType itemType;
     void Start()
     {
-        if (itemType == ItemType.Coin)
-        {
-            Debug.Log("i'm coin");
-        }
-        else if (itemType == ItemType.Health)
-        {
-            Debug.Log("i' health");
-        }
-        else if (itemType == ItemType.Ammo)
-        {
-            Debug.Log("i' ammo");
-        }
-        else if (itemType == ItemType.Inventory)
-        {
-            Debug.Log("i' inventory");
-        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,7 +23,19 @@ public class Collectable : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            player.coinsCollected += 1;
+            switch (itemType)
+            {
+                case ItemType.Coin:
+                    player.coinsCollected += 1;
+                    break;
+                case ItemType.Health:
+                    if (player.health < 100f)
+                    {
+                        player.health += 20;
+                    }
+                    break;
+            }
+            
             player.UpdateUI();
             Destroy(gameObject);
         }
