@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : PhysicsObject
 {
     [SerializeField] private float maxSpeed = 1;
+    [SerializeField] private float jumpPower;
     void Start()
     {
         
@@ -17,7 +18,7 @@ public class Player : PhysicsObject
         // if the player presses "jump" and we are in grounded, set the velocity a ajump power value
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            velocity.y = 10;
+            velocity.y = jumpPower;
         }
     }
 }
