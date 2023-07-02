@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : PhysicsObject
 {
-    [SerializeField] private float maxSpeed = 1;
+    [SerializeField] private float  maxSpeed = 1;
     [SerializeField] private float jumpPower;
+
+    public int coinsCollected;
+    public int health = 100;
+    public int ammo;
+
+    [SerializeField] TextMeshProUGUI coinsText;
+    
     void Start()
     {
         
@@ -20,5 +28,11 @@ public class Player : PhysicsObject
         {
             velocity.y = jumpPower;
         }
+    }
+    
+    //Update ui elements
+    public void UpdateUI()
+    {
+        coinsText.text = coinsCollected.ToString(); 
     }
 }
